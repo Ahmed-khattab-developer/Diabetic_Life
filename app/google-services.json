@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061568416596",
+    "project_id": "diabetic-life-79d60",
+    "storage_bucket": "diabetic-life-79d60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061568416596:android:391aea21516a58f8bdd6c1",
+        "android_client_info": {
+          "package_name": "com.rx.diabeticlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061568416596-n8dh9cm9nnqb0me50ccthpb2hkjjap2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC_51IFx6fXRBEDjVfErQEUS_rTg0g0w8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061568416596-n8dh9cm9nnqb0me50ccthpb2hkjjap2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
