@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/drawable/button_border_blue.xml" value="0.181" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_choose.xml" value="0.2046875" />
-        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_choose_trainer.xml" value="0.2046875" />
-        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_doctor_complete_data.xml" value="0.1" />
+        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_choose_trainer.xml" value="0.2" />
+        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_doctor_complete_data.xml" value="0.2" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_doctor_result.xml" value="0.2046875" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_login.xml" value="0.2046875" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_login2.xml" value="0.2046875" />
-        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_login3.xml" value="0.1" />
+        <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_login3.xml" value="0.16" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_main_doctor.xml" value="0.2046875" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_main_patient.xml" value="0.2046875" />
         <entry key="..\:/Users/mahmoud/AndroidStudioProjects/DiabeticLife/app/src/main/res/layout/activity_main_trainer.xml" value="0.2046875" />
