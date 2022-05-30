@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2E368D"
     tools:context=".doctor.activity.DoctorResultActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +19,8 @@
             android:id="@+id/imgView"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_border_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,26 +30,31 @@
             android:id="@+id/layout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgView">
 
             <!--Button for choosing image from gallery-->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnChoose"
                 android:layout_width="200dp"
-                android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_border_blue"
                 android:text="Choose" />
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_save"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_border_blue"
             android:text="save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_button" />

@@ -12,7 +12,6 @@ class ResultsDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results_details)
 
-
         Picasso.with(this).load(intent.getStringExtra("doctorImage"))
             .into(findViewById<ImageView>(R.id.image))
 

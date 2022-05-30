@@ -1,6 +1,7 @@
 package com.rx.diabeticlife.patient.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.rx.diabeticlife.patient.pojo.Request
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class SendRequestActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -79,6 +81,10 @@ class SendRequestActivity : AppCompatActivity(), View.OnClickListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
+
+                val textView: TextView = parent.getChildAt(0) as TextView
+                textView.setTextColor(Color.WHITE)
+
                 sugarLevel = sugarList[position]
             }
 
@@ -94,6 +100,10 @@ class SendRequestActivity : AppCompatActivity(), View.OnClickListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
+
+                val textView: TextView = parent.getChildAt(0) as TextView
+                textView.setTextColor(Color.WHITE)
+
                 targetLevel = targetList[position]
             }
 

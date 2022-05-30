@@ -203,7 +203,7 @@ class DoctorResultActivity : AppCompatActivity() {
                     if (type == "doctor") {
                         databaseReference.child(requestId!!).child("doctorImageResult").setValue(
                             image
-                        ) { error, ref ->
+                        ) { error, _ ->
                             if (error != null) {
                                 Toast.makeText(
                                     this@DoctorResultActivity, "Fail to add data $error",
@@ -253,7 +253,7 @@ class DoctorResultActivity : AppCompatActivity() {
                             if (type == "doctor") {
                                 databaseReference.child(requestId!!).child("doctorImageResult").setValue(
                                     image
-                                ) { error, ref ->
+                                ) { error, _ ->
                                     if (error != null) {
                                         Toast.makeText(
                                             this@DoctorResultActivity, "Fail to add data $error",
@@ -269,7 +269,7 @@ class DoctorResultActivity : AppCompatActivity() {
                             } else {
                                 databaseReference.child(requestId!!).child("trainerImageResult").setValue(
                                     image
-                                ) { error, ref ->
+                                ) { error, _ ->
                                     if (error != null) {
                                         Toast.makeText(
                                             this@DoctorResultActivity, "Fail to add data $error",

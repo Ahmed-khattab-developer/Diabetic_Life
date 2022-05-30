@@ -42,7 +42,13 @@ class SessionManagement constructor(context: Context?) {
      * Get stored session data
      */
     fun createLoginSession(
-        Status: Boolean?, id: String?, type: String?, name: String?, age: String?, gender: String?,image: String
+        Status: Boolean?,
+        id: String?,
+        type: String?,
+        name: String?,
+        age: String?,
+        gender: String?,
+        image: String
     ) {
         editor!!.putBoolean(IS_LOGIN, Status!!)
         editor!!.putString(ID, id)
@@ -76,11 +82,6 @@ class SessionManagement constructor(context: Context?) {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         _context!!.startActivity(intent)
-    }
-
-    fun logout() {
-        editor!!.clear()
-        editor!!.commit()
     }
 
     /**

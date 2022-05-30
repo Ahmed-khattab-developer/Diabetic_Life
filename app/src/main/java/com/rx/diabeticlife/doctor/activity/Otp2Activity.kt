@@ -3,8 +3,10 @@ package com.rx.diabeticlife.doctor.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -23,12 +25,16 @@ class Otp2Activity : AppCompatActivity() {
 
     private lateinit var iSessionManagement: SessionManagement
 
+    lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp2)
         iSessionManagement = SessionManagement(this)
 
         auth = FirebaseAuth.getInstance()
+
+        progressBar = findViewById(R.id.progress_bar)
 
         firebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -39,6 +45,7 @@ class Otp2Activity : AppCompatActivity() {
         findViewById<Button>(R.id.login).setOnClickListener {
             val otp = findViewById<EditText>(R.id.et_otp).text.trim().toString()
             if (otp.isNotEmpty()) {
+                progressBar.visibility = View.VISIBLE
                 val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(
                     storedVerificationId.toString(), otp
                 )
@@ -56,6 +63,7 @@ class Otp2Activity : AppCompatActivity() {
                     getUserData()
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -75,6 +83,7 @@ class Otp2Activity : AppCompatActivity() {
                         "doctor", doctor?.name, "", "", doctor?.image!!
                     )
 
+                    progressBar.visibility = View.GONE
                     val intent = Intent(this@Otp2Activity, MainDoctorActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

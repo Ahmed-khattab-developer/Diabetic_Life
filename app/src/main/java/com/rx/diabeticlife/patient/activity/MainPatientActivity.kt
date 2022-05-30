@@ -14,7 +14,7 @@ import com.rx.diabeticlife.patient.fragment.ResultsFragment
 
 class MainPatientActivity : AppCompatActivity() {
 
-    lateinit var bottomNav: BottomNavigationView
+    private lateinit var bottomNav: BottomNavigationView
 
     private lateinit var iSessionManagement: SessionManagement
 

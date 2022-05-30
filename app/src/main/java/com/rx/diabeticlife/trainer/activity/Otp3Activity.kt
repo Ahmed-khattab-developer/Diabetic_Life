@@ -3,8 +3,10 @@ package com.rx.diabeticlife.trainer.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -13,7 +15,6 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.*
 import com.rx.diabeticlife.R
 import com.rx.diabeticlife.SessionManagement
-import com.rx.diabeticlife.patient.activity.PatientCompleteDataActivity
 import com.rx.diabeticlife.patient.pojo.Patient
 
 class Otp3Activity : AppCompatActivity() {
@@ -24,12 +25,16 @@ class Otp3Activity : AppCompatActivity() {
 
     private lateinit var iSessionManagement: SessionManagement
 
+    lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp3)
 
         iSessionManagement = SessionManagement(this)
         auth = FirebaseAuth.getInstance()
+
+        progressBar = findViewById(R.id.progress_bar)
 
         firebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -40,6 +45,7 @@ class Otp3Activity : AppCompatActivity() {
         findViewById<Button>(R.id.login).setOnClickListener {
             val otp = findViewById<EditText>(R.id.et_otp).text.trim().toString()
             if (otp.isNotEmpty()) {
+                progressBar.visibility = View.VISIBLE
                 val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(
                     storedVerificationId.toString(), otp
                 )
@@ -57,6 +63,7 @@ class Otp3Activity : AppCompatActivity() {
                     getUserData()
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -76,6 +83,7 @@ class Otp3Activity : AppCompatActivity() {
                         "trainer", patient?.name, patient?.age, patient?.gender,""
                     )
 
+                    progressBar.visibility = View.GONE
                     val intent = Intent(this@Otp3Activity, MainTrainerActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

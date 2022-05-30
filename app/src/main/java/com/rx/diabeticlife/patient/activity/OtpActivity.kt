@@ -2,8 +2,10 @@ package com.rx.diabeticlife.patient.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -23,11 +25,15 @@ class OtpActivity : AppCompatActivity() {
 
     private lateinit var iSessionManagement: SessionManagement
 
+    lateinit var progressBar: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp)
         iSessionManagement = SessionManagement(this)
         auth = FirebaseAuth.getInstance()
+
+        progressBar = findViewById(R.id.progress_bar)
 
         firebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -38,6 +44,7 @@ class OtpActivity : AppCompatActivity() {
         findViewById<Button>(R.id.login).setOnClickListener {
             val otp = findViewById<EditText>(R.id.et_otp).text.trim().toString()
             if (otp.isNotEmpty()) {
+                progressBar.visibility = View.VISIBLE
                 val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(
                     storedVerificationId.toString(), otp
                 )
@@ -55,6 +62,7 @@ class OtpActivity : AppCompatActivity() {
                     getUserData()
                 } else {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -66,27 +74,28 @@ class OtpActivity : AppCompatActivity() {
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    if (dataSnapshot.child(auth.uid.toString()).exists()) {
+                if (dataSnapshot.child(auth.uid.toString()).exists()) {
 
-                        val patient: Patient? = dataSnapshot.child(auth.uid.toString()).getValue(Patient::class.java)
-                        iSessionManagement.createLoginSession(
-                            true, auth.uid.toString(),
-                            "patient", patient?.name, patient?.age, patient?.gender,""
-                        )
+                    val patient: Patient? =
+                        dataSnapshot.child(auth.uid.toString()).getValue(Patient::class.java)
+                    iSessionManagement.createLoginSession(
+                        true, auth.uid.toString(),
+                        "patient", patient?.name, patient?.age, patient?.gender, ""
+                    )
+                    progressBar.visibility = View.GONE
+                    val intent = Intent(this@OtpActivity, MainPatientActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    finish()
+                } else {
 
-                        val intent = Intent(this@OtpActivity, MainPatientActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        startActivity(intent)
-                        finish()
-                    } else {
+                    val intent =
+                        Intent(this@OtpActivity, PatientCompleteDataActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
-                        val intent =
-                            Intent(this@OtpActivity, PatientCompleteDataActivity::class.java)
-                        startActivity(intent)
-                        finish()
-
-                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

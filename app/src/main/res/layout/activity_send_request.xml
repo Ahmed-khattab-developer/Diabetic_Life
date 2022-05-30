@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2E368D"
     tools:context=".patient.activity.SendRequestActivity">
 
 
@@ -14,9 +15,10 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="Measurement of the blood sugar level"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinner_sample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,9 +34,10 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="your target"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sample" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinner_sample_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,19 +53,22 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="enter your weight"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/spinner_sample_2" />
 
     <EditText
         android:id="@+id/ed_weight"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/button_border_blue"
         android:ems="10"
         android:hint="Enter your weight"
         android:inputType="number"
+        android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text2" />
@@ -74,32 +80,47 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="enter your height"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/ed_weight" />
 
     <EditText
         android:id="@+id/ed_height"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/button_border_blue"
         android:ems="10"
         android:hint="Enter your height"
         android:inputType="number"
+        android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text3" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_send"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:background="@drawable/button_border_blue"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_height" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="100dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
