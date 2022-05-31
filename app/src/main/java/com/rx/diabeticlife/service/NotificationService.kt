@@ -67,7 +67,7 @@ class NotificationService : FirebaseMessagingService() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.logo)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
