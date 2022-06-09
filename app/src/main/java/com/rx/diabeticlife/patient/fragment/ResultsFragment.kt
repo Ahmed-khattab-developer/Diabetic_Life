@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.rx.diabeticlife.R
 import com.rx.diabeticlife.SessionManagement
+import com.rx.diabeticlife.SessionManagement.Constants.NAME
 import com.rx.diabeticlife.doctor.pojo.ResultData
 import com.rx.diabeticlife.patient.adapter.ResultsAdapter
 
@@ -32,7 +33,7 @@ class ResultsFragment : Fragment(R.layout.fragment_results) {
         iSessionManagement = SessionManagement(context)
 
         view.findViewById<TextView>(R.id.user).text =
-            "Hello " + iSessionManagement.getUserDetails()[SessionManagement.Constants.NAME]
+            "Hello " + iSessionManagement.getUserDetails()[NAME]
 
         recyclerView = view.findViewById(R.id.recycler)
         auth = FirebaseAuth.getInstance()

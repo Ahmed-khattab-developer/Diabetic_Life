@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.rx.diabeticlife.R
 import com.rx.diabeticlife.SessionManagement
 import com.rx.diabeticlife.patient.fragment.NewRequestFragment
+import com.rx.diabeticlife.patient.fragment.ProfileFragment
 import com.rx.diabeticlife.patient.fragment.RequestsFragment
 import com.rx.diabeticlife.patient.fragment.ResultsFragment
 
@@ -35,6 +36,9 @@ class MainPatientActivity : AppCompatActivity() {
                 R.id.results -> {
                     loadFragment(ResultsFragment())
                 }
+                R.id.profile -> {
+                    loadFragment(ProfileFragment())
+                }
             }
             true
         }
@@ -43,7 +47,6 @@ class MainPatientActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             iSessionManagement.logoutUser()
         }
-
     }
 
     private fun loadFragment(fragment: Fragment) {

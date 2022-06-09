@@ -29,7 +29,8 @@ class NewRequestFragment : Fragment(R.layout.fragment_new_request) {
         super.onViewCreated(view, savedInstanceState)
         iSessionManagement = SessionManagement(context)
 
-        view.findViewById<TextView>(R.id.user).text = "Hello " + iSessionManagement.getUserDetails()[NAME]
+        view.findViewById<TextView>(R.id.user).text =
+            "Hello " + iSessionManagement.getUserDetails()[NAME]
         recyclerView = view.findViewById(R.id.recycler)
 
         firebaseDatabase = FirebaseDatabase.getInstance()

@@ -25,6 +25,7 @@ class ChooseTrainerActivity : AppCompatActivity() {
     var doctorId: String? = null
     var doctorName: String? = null
     var doctorImage: String? = null
+    var doctorFees: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class ChooseTrainerActivity : AppCompatActivity() {
         doctorId = intent.getStringExtra("doctor_id")
         doctorName = intent.getStringExtra("doctor_name")
         doctorImage = intent.getStringExtra("doctor_image")
+        doctorFees = intent.getStringExtra("doctor_fees")
 
         recyclerView = findViewById(R.id.recycler)
 
@@ -46,7 +48,7 @@ class ChooseTrainerActivity : AppCompatActivity() {
         val options: FirebaseRecyclerOptions<Trainer> = FirebaseRecyclerOptions.Builder<Trainer>()
             .setQuery(databaseReference, Trainer::class.java)
             .build()
-        adapter = TrainerAdapter(options, doctorId!!,doctorName!!,doctorImage!!)
+        adapter = TrainerAdapter(options, doctorId!!,doctorName!!,doctorImage!!,doctorFees!!,this)
         recyclerView?.adapter = adapter
     }
 

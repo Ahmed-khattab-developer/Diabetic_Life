@@ -24,7 +24,8 @@ class DoctorAdapter(options: FirebaseRecyclerOptions<Doctor>) :
     override fun onBindViewHolder(
         @NonNull holder: DoctorViewHolder, position: Int, @NonNull model: Doctor
     ) {
-        holder.firstname.text = "Dr : "+ model.name
+        holder.firstname.text = "Dr : " + model.name
+        holder.fees.text = "fees : " + model.fees + " EG"
         Picasso.with(context).load(model.image).into(holder.image)
 
         holder.itemView.setOnClickListener {
@@ -32,6 +33,7 @@ class DoctorAdapter(options: FirebaseRecyclerOptions<Doctor>) :
             mainIntent.putExtra("doctor_id", model.uid)
             mainIntent.putExtra("doctor_name", model.name)
             mainIntent.putExtra("doctor_image", model.image)
+            mainIntent.putExtra("doctor_fees", model.fees)
             context?.startActivity(mainIntent)
         }
     }
@@ -48,6 +50,7 @@ class DoctorAdapter(options: FirebaseRecyclerOptions<Doctor>) :
     class DoctorViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.image)
         var firstname: TextView = itemView.findViewById(R.id.firstname)
+        var fees: TextView = itemView.findViewById(R.id.fees)
     }
 
 }

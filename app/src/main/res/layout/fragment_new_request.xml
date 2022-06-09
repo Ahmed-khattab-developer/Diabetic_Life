@@ -7,11 +7,10 @@
     android:background="#2E368D"
     tools:context=".patient.fragment.NewRequestFragment">
 
-
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:background="#BA4290DE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +30,7 @@
         android:id="@+id/choose"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_border_blue"
         android:gravity="center"
         android:text="Choose Doctor"

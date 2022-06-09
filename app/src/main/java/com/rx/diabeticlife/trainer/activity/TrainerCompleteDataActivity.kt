@@ -54,11 +54,16 @@ class TrainerCompleteDataActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Trainer Age Required ", Toast.LENGTH_SHORT)
                         .show()
                 }
+                findViewById<EditText>(R.id.fees).text.trim().isEmpty() -> {
+                    Toast.makeText(applicationContext, "Trainer Fees Required ", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 else -> {
                     addDataToFirebase(
                         findViewById<EditText>(R.id.et_name).text.toString(),
                         findViewById<EditText>(R.id.et_age).text.toString(),
-                        gender.toString()
+                        gender.toString(),
+                        findViewById<EditText>(R.id.fees).text.toString()
                     )
                 }
             }
@@ -66,16 +71,27 @@ class TrainerCompleteDataActivity : AppCompatActivity() {
 
     }
 
-    private fun addDataToFirebase(name: String, age: String, gender: String) {
+    private fun addDataToFirebase(name: String, age: String, gender: String, fees: String) {
 
-        val trainer = Trainer(auth.uid.toString(), name, age, gender)
+        val trainer = Trainer(auth.uid.toString(), name, age, gender, fees)
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 databaseReference.setValue(trainer)
 
                 iSessionManagement.createLoginSession(
-                    true, auth.uid.toString(), "trainer", name, age, gender, ""
+                    true,
+                    auth.uid.toString(),
+                    "trainer",
+                    name,
+                    fees,
+                    age,
+                    gender,
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
                 )
 
                 val intent =

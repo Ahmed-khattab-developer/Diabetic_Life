@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2E368D"
-    tools:context=".doctor.activity.Login2Activity">
+    tools:context=".patient.activity.SignUpActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -20,9 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="15dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,35 +60,49 @@
             android:textColorHint="#000000"
             android:textSize="15sp" />
 
+        <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+            android:id="@+id/etSConfPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_border_blue"
+            android:hint="confirm password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="#000000"
+            android:textSize="15sp" />
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLogin"
-            android:layout_width="150dp"
+            android:id="@+id/btnSSigned"
+            android:layout_width="200dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:background="@drawable/button_border_blue"
             android:gravity="center"
-            android:text="login"
+            android:text="SignUp"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tvRedirectSignUp"
-            android:layout_width="match_parent"
+            android:id="@+id/tvRedirectLogin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:gravity="end"
             android:padding="10dp"
-            android:text="signup"
+            android:layout_gravity="end"
+            android:text="Login"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:padding="100dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

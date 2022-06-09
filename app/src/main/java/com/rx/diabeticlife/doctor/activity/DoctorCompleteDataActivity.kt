@@ -28,6 +28,7 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
 
     private var imageView: ImageView? = null
     private var name: EditText? = null
+    private var fees: EditText? = null
 
     private var selectedImageUri: Uri? = null
 
@@ -49,6 +50,7 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
         btnSelect = findViewById(R.id.btnChoose)
         imageView = findViewById(R.id.imgView)
         name = findViewById(R.id.name)
+        fees = findViewById(R.id.fees)
 
         auth = FirebaseAuth.getInstance()
 
@@ -68,6 +70,10 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
             when {
                 name?.text?.trim()?.isEmpty() == true -> {
                     Toast.makeText(applicationContext, "Doctor Name Required", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                fees?.text?.trim()?.isEmpty() == true -> {
+                    Toast.makeText(applicationContext, "Doctor Fees Required", Toast.LENGTH_SHORT)
                         .show()
                 }
                 selectedImageUri == null -> {
@@ -122,7 +128,11 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
 
                     ref.downloadUrl.addOnSuccessListener { uri ->
                         generatedFilePath = uri.toString()
-                        addDataToFirebase(name?.text.toString(), generatedFilePath!!)
+                        addDataToFirebase(
+                            name?.text.toString(),
+                            generatedFilePath!!,
+                            fees?.text.toString()
+                        )
                     }
 
                 }
@@ -143,9 +153,9 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
         }
     }
 
-    private fun addDataToFirebase(name: String, image: String?) {
+    private fun addDataToFirebase(name: String, image: String?, fees: String) {
 
-        val doctor = Doctor(auth.uid.toString(), name, image!!)
+        val doctor = Doctor(auth.uid.toString(), name, image!!, fees)
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -154,7 +164,8 @@ class DoctorCompleteDataActivity : AppCompatActivity() {
 
                 iSessionManagement.createLoginSession(
                     true, auth.uid.toString(),
-                    "doctor", doctor.name, "", "", doctor.image!!
+                    "doctor", doctor.name, fees,"", "", doctor.image!!,
+                    "", "", "", ""
                 )
 
                 val intent = Intent(this@DoctorCompleteDataActivity, MainDoctorActivity::class.java)

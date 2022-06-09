@@ -7,34 +7,78 @@
     android:layout_height="match_parent"
     tools:context=".trainer.activity.Login3Activity">
 
-    <EditText
-        android:id="@+id/et_phone_number"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingStart="10dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/button_border_blue"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="Enter Phone Number"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="85dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_otp"
-        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_border_blue"
-        android:text="Send OTP"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Welcome"
+        android:textColor="@color/white"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/etEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_border_blue"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColorHint="#000000"
+            android:textSize="15sp" />
+
+        <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/button_border_blue"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColorHint="#000000"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/button_border_blue"
+            android:gravity="center"
+            android:text="login"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvRedirectSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="end"
+            android:padding="10dp"
+            android:text="signup"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"

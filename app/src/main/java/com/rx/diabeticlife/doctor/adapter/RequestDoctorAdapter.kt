@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,7 @@ import com.rx.diabeticlife.R
 import com.rx.diabeticlife.doctor.activity.RequestDetailsDoctorActivity
 import com.rx.diabeticlife.patient.pojo.Request
 
-class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>,val type : String) :
+class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>, val type: String) :
     FirebaseRecyclerAdapter<Request, RequestDoctorAdapter.RequestViewHolder>(options) {
 
     private var context: Context? = null
@@ -22,8 +23,18 @@ class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>,val type : 
     override fun onBindViewHolder(
         @NonNull holder: RequestViewHolder, position: Int, @NonNull model: Request
     ) {
-        holder.firstname.text = model.doctorName
-        holder.date.text = model.date
+        holder.firstname.text = "name : " + model.doctorName
+        holder.date.text = "date : " + model.date
+
+        if (type == "doctor") {
+            if (model.doctorUpload == "1") {
+                holder.image.setImageResource(R.drawable.done)
+            }
+        } else {
+            if (model.trainerUpload == "1") {
+                holder.image.setImageResource(R.drawable.done)
+            }
+        }
 
         holder.itemView.setOnClickListener {
 
@@ -31,10 +42,12 @@ class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>,val type : 
             mainIntent.putExtra("doctorId", model.doctorId)
             mainIntent.putExtra("doctorName", model.doctorName)
             mainIntent.putExtra("doctorImage", model.doctorImage)
+            mainIntent.putExtra("doctorFees", model.doctorFees)
             mainIntent.putExtra("trainerId", model.trainerId)
             mainIntent.putExtra("trainerName", model.trainerName)
             mainIntent.putExtra("trainerAge", model.trainerAge)
             mainIntent.putExtra("trainerGender", model.trainerGender)
+            mainIntent.putExtra("trainerFees", model.trainerFees)
             mainIntent.putExtra("patientId", model.patientId)
             mainIntent.putExtra("patientName", model.patientName)
             mainIntent.putExtra("patientAge", model.patientAge)
@@ -44,6 +57,8 @@ class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>,val type : 
             mainIntent.putExtra("weight", model.weight)
             mainIntent.putExtra("height", model.height)
             mainIntent.putExtra("date", model.date)
+            mainIntent.putExtra("doctorUpload", model.doctorUpload)
+            mainIntent.putExtra("trainerUpload", model.trainerUpload)
             mainIntent.putExtra("type", type)
             mainIntent.putExtra("requestId", model.uId)
             context?.startActivity(mainIntent)
@@ -62,6 +77,7 @@ class RequestDoctorAdapter(options: FirebaseRecyclerOptions<Request>,val type : 
     class RequestViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
         var firstname: TextView = itemView.findViewById(R.id.firstname)
         var date: TextView = itemView.findViewById(R.id.date)
+        var image: ImageView = itemView.findViewById(R.id.done)
     }
 
 }

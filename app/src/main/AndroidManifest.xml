@@ -18,6 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DiabeticLife">
+        <activity
+            android:name=".patient.activity.PaymentActivity"
+            android:exported="false" />
 
         <service
             android:name=".service.NotificationService"
@@ -30,12 +33,13 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/rrr" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="diet" />
@@ -74,16 +78,16 @@
             android:name=".patient.activity.PatientCompleteDataActivity"
             android:exported="false" />
         <activity
-            android:name=".trainer.activity.Otp3Activity"
+            android:name=".trainer.activity.SignUp3Activity"
             android:exported="false" />
         <activity
-            android:name=".doctor.activity.Otp2Activity"
+            android:name=".doctor.activity.SignUp2Activity"
             android:exported="false" />
         <activity
             android:name=".patient.activity.MainPatientActivity"
             android:exported="false" />
         <activity
-            android:name=".patient.activity.OtpActivity"
+            android:name=".patient.activity.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".trainer.activity.Login3Activity"

@@ -4,12 +4,13 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -43,10 +44,12 @@ class DoctorResultActivity : AppCompatActivity() {
     var doctorId: String? = null
     var doctorName: String? = null
     var doctorImage: String? = null
+    var doctorFees: String? = null
     var trainerId: String? = null
     var trainerName: String? = null
     var trainerAge: String? = null
     var trainerGender: String? = null
+    var trainerFees: String? = null
     var patientId: String? = null
     var patientName: String? = null
     var patientAge: String? = null
@@ -56,6 +59,8 @@ class DoctorResultActivity : AppCompatActivity() {
     var weight: String? = null
     var height: String? = null
     var date: String? = null
+    var doctorUpload: String? = null
+    var trainerUpload: String? = null
     var type: String? = null
     var requestId: String? = null
 
@@ -66,10 +71,12 @@ class DoctorResultActivity : AppCompatActivity() {
         doctorId = intent.getStringExtra("doctorId")
         doctorName = intent.getStringExtra("doctorName")
         doctorImage = intent.getStringExtra("doctorImage")
+        doctorFees = intent.getStringExtra("doctorFees")
         trainerId = intent.getStringExtra("trainerId")
         trainerName = intent.getStringExtra("trainerName")
         trainerAge = intent.getStringExtra("trainerAge")
         trainerGender = intent.getStringExtra("trainerGender")
+        trainerFees = intent.getStringExtra("trainerFees")
         patientId = intent.getStringExtra("patientId")
         patientName = intent.getStringExtra("patientName")
         patientAge = intent.getStringExtra("patientAge")
@@ -79,6 +86,8 @@ class DoctorResultActivity : AppCompatActivity() {
         weight = intent.getStringExtra("weight")
         height = intent.getStringExtra("height")
         date = intent.getStringExtra("date")
+        doctorUpload = intent.getStringExtra("doctorUpload")
+        trainerUpload = intent.getStringExtra("trainerUpload")
         type = intent.getStringExtra("type")
         requestId = intent.getStringExtra("requestId")
 
@@ -180,20 +189,27 @@ class DoctorResultActivity : AppCompatActivity() {
         if (type == "doctor") {
 
             result = ResultData(
-                requestId!!, doctorId!!, doctorName!!, doctorImage!!, trainerId!!,
-                trainerName!!, trainerAge!!, trainerGender!!,
+                requestId!!, doctorId!!, doctorName!!, doctorImage!!, doctorFees!!, trainerId!!,
+                trainerName!!, trainerAge!!, trainerGender!!, trainerFees!!,
                 patientId!!, patientName!!, patientAge!!, patientGender!!,
                 sugarLevel!!, targetLevel!!, weight!!, height!!, date!!
             )
+
+            firebaseDatabase.reference.child("request").child(requestId!!)
+                .child("doctorUpload").setValue("1")
+
         } else {
             result = ResultData(
-                requestId!!, doctorId!!, doctorName!!, doctorImage!!, trainerId!!,
-                trainerName!!, trainerAge!!, trainerGender!!,
+                requestId!!, doctorId!!, doctorName!!, doctorImage!!, doctorFees!!, trainerId!!,
+                trainerName!!, trainerAge!!, trainerGender!!, trainerFees!!,
                 patientId!!, patientName!!, patientAge!!, patientGender!!,
                 sugarLevel!!, targetLevel!!, weight!!, height!!, date!!
             )
-        }
 
+            firebaseDatabase.reference.child("request").child(requestId!!)
+                .child("trainerUpload").setValue("1")
+
+        }
 
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -211,7 +227,10 @@ class DoctorResultActivity : AppCompatActivity() {
                                 ).show()
                             } else {
                                 val intent =
-                                    Intent(this@DoctorResultActivity, MainDoctorActivity::class.java)
+                                    Intent(
+                                        this@DoctorResultActivity,
+                                        MainDoctorActivity::class.java
+                                    )
                                 startActivity(intent)
                                 finish()
                             }
@@ -227,7 +246,10 @@ class DoctorResultActivity : AppCompatActivity() {
                                 ).show()
                             } else {
                                 val intent =
-                                    Intent(this@DoctorResultActivity, MainTrainerActivity::class.java)
+                                    Intent(
+                                        this@DoctorResultActivity,
+                                        MainTrainerActivity::class.java
+                                    )
                                 startActivity(intent)
                                 finish()
                             }
@@ -241,7 +263,9 @@ class DoctorResultActivity : AppCompatActivity() {
 
                         if (error != null) {
                             Toast.makeText(
-                                this@DoctorResultActivity, "Fail to add data $error", Toast.LENGTH_SHORT
+                                this@DoctorResultActivity,
+                                "Fail to add data $error",
+                                Toast.LENGTH_SHORT
                             ).show()
                         } else {
 
@@ -251,37 +275,47 @@ class DoctorResultActivity : AppCompatActivity() {
                             ).show()
 
                             if (type == "doctor") {
-                                databaseReference.child(requestId!!).child("doctorImageResult").setValue(
-                                    image
-                                ) { error, _ ->
-                                    if (error != null) {
-                                        Toast.makeText(
-                                            this@DoctorResultActivity, "Fail to add data $error",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    } else {
-                                        val intent =
-                                            Intent(this@DoctorResultActivity, MainDoctorActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                                databaseReference.child(requestId!!).child("doctorImageResult")
+                                    .setValue(
+                                        image
+                                    ) { error2, _ ->
+                                        if (error2 != null) {
+                                            Toast.makeText(
+                                                this@DoctorResultActivity,
+                                                "Fail to add data $error",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            val intent =
+                                                Intent(
+                                                    this@DoctorResultActivity,
+                                                    MainDoctorActivity::class.java
+                                                )
+                                            startActivity(intent)
+                                            finish()
+                                        }
                                     }
-                                }
                             } else {
-                                databaseReference.child(requestId!!).child("trainerImageResult").setValue(
-                                    image
-                                ) { error, _ ->
-                                    if (error != null) {
-                                        Toast.makeText(
-                                            this@DoctorResultActivity, "Fail to add data $error",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    } else {
-                                        val intent =
-                                            Intent(this@DoctorResultActivity, MainTrainerActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                                databaseReference.child(requestId!!).child("trainerImageResult")
+                                    .setValue(
+                                        image
+                                    ) { error2, _ ->
+                                        if (error2 != null) {
+                                            Toast.makeText(
+                                                this@DoctorResultActivity,
+                                                "Fail to add data $error",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            val intent =
+                                                Intent(
+                                                    this@DoctorResultActivity,
+                                                    MainTrainerActivity::class.java
+                                                )
+                                            startActivity(intent)
+                                            finish()
+                                        }
                                     }
-                                }
                             }
                         }
                     }
@@ -294,7 +328,6 @@ class DoctorResultActivity : AppCompatActivity() {
             }
 
         })
-
 
 
     }
